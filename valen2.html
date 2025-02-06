@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be My Valentine?</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Pacifico', cursive;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      color: #6a1b9a; /* Deep purple for text */
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 100%;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide {
+      display: none;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #e75480; /* Pinkish color */
+    }
+
+    button {
+      background: #e75480;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      margin: 10px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 18px;
+      font-family: 'Pacifico', cursive;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background: #d43f6a;
+      transform: scale(1.05);
+    }
+
+    select {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 25px;
+      border: 2px solid #e75480;
+      margin-bottom: 20px;
+      font-family: 'Pacifico', cursive;
+      width: 80%;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .activity {
+      background: #ffcccb;
+      color: #6a1b9a;
+      border: 2px solid #e75480;
+    }
+
+    .activity:hover {
+      background: #e75480;
+      color: white;
+    }
+
+    /* Add Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Slide 1: Valentine Question -->
+    <div id="slide1" class="slide active">
+      <h1>Will you be my Valentine? 💖</h1>
+      <button id="yesButton">Yes!</button>
+      <button id="noButton">No</button>
+    </div>
+
+    <!-- Slide 2: Select Time -->
+    <div id="slide2" class="slide">
+      <h1>What time are you free on February 14th? 🕒</h1>
+      <select id="timeSelect">
+        <option value="10:00 AM">10:00 AM</option>
+        <option value="2:00 PM">2:00 PM</option>
+        <option value="6:00 PM">6:00 PM</option>
+      </select>
+      <button id="nextButton1">Next</button>
+    </div>
+
+    <!-- Slide 3: Activity Options -->
+    <div id="slide3" class="slide">
+      <h1>What would you like to do? 🎀</h1>
+      <div class="options">
+        <button class="activity" data-activity="Dinner">Dinner Date 🍝</button>
+        <button class="activity" data-activity="Movie">Movie Night 🎬</button>
+        <button class="activity" data-activity="Walk">Romantic Walk 🌹</button>
+      </div>
+    </div>
+
+    <!-- Slide 4: Thank You Message -->
+    <div id="slide4" class="slide">
+      <h1>Thank you for being my Valentine! 💌</h1>
+      <p>I can't wait to spend time with you on February 14th. ❤️</p>
+    </div>
+  </div>
+
+  <script>
+    // Get all slides
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    // Show the first slide
+    slides[currentSlide].classList.add('active');
+
+    // Slide 1: Valentine Question
+    document.getElementById('yesButton').addEventListener('click', () => {
+      moveToNextSlide();
+    });
+
+    document.getElementById('noButton').addEventListener('click', () => {
+      alert("Aww, please reconsider! 🥺");
+    });
+
+    // Slide 2: Select Time
+    document.getElementById('nextButton1').addEventListener('click', () => {
+      const selectedTime = document.getElementById('timeSelect').value;
+      alert(`Great! You're free at ${selectedTime}.`);
+      moveToNextSlide();
+    });
+
+    // Slide 3: Activity Options
+    document.querySelectorAll('.activity').forEach(button => {
+      button.addEventListener('click', () => {
+        const activity = button.getAttribute('data-activity');
+        alert(`You chose: ${activity}. Perfect!`);
+        moveToNextSlide();
+      });
+    });
+
+    // Function to move to the next slide
+    function moveToNextSlide() {
+      slides[currentSlide].classList.remove('active');
+      currentSlide++;
+      if (currentSlide >= slides.length) currentSlide = 0; // Loop back if needed
+      slides[currentSlide].classList.add('active');
+    }
+  </script>
+</body>
+</html>
