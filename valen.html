@@ -31,14 +31,6 @@
             justify-content: center;
             align-items: center;
             animation: fadeIn 1s ease-in-out;
-            
-        }
-        .container img {
-            max-width: 50%;
-            height: 50%;
-            border-radius: 80px;
-            border: 4px #36c47b;
-
         }
         .text {
             font-size: 2.5rem;
@@ -49,7 +41,7 @@
         .button {
             padding: 15px 45px;
             font-size: 1.2rem;
-           font-family: 'Dancing Script', cursive;
+            font-family: 'Dancing Script', cursive;
             color: #ffffff;
             background: linear-gradient(45deg, #ff6ec4, #7873f5);
             border: 4px solid rgb(176, 127, 176);
@@ -63,68 +55,17 @@
             background: linear-gradient(45deg, #7873f5, #ff6ec4);
             transform: scale(1.1);
         }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 10;
-            }
-        }
         .hidden {
             display: none;
-        }
-        .decorations {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-        .decorations .flower {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background: url('flwr.') no-repeat center;
-            background-size: contain;
-            animation: float 6s infinite ease-in-out;
-        }
-        .decorations .flower:nth-child(1) {
-            top: 10%;
-            left: 20%;
-            animation-delay: 0s;
-        }
-        .decorations .flower:nth-child(2) {
-            top: 50%;
-            left: 70%;
-            animation-delay: 2s;
-        }
-        .decorations .flower:nth-child(3) {
-            top: 80%;
-            left: 30%;
-            animation-delay: 4s;
-        }
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
         }
     </style>
 </head>
 <body>
-    <div class="decorations">
-        <div class="flowers.jpg"></div>
-        <div class="flower2.jpg"></div>
-        <div class="spark.jpg"></div>
-    </div>
     <div id="slide1" class="container">
         <img src="bhidu.png" alt="First Image">
         <div class="text">Will you be my Valentine?</div>
         <button class="button" onclick="nextSlide(2)">Yes!</button>
+        <button class="button" onclick="nextSlide(2)">Yes, only</button>
     </div>
 
     <div id="slide2" class="container hidden">
@@ -154,11 +95,9 @@
 
     <script>
         function nextSlide(slideNumber) {
-            // Hide all slides
             document.querySelectorAll('.container').forEach(slide => {
                 slide.classList.add('hidden');
             });
-            // Show the selected slide
             document.getElementById('slide' + slideNumber).classList.remove('hidden');
         }
     </script>
